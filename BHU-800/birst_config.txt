@@ -1,0 +1,58 @@
+[BackupRepo2SVN.exe]
+# This exe file downloads the repo admin files from spaces and stores them in SVN.
+# - copy_from Tag : Specifies the prefix of the Spaces
+# - copy_from_spaces : Specifies the name of the space excluding the prefix.
+# Both copy_from and copy_from_spaces tag combined define the space name
+# The download url is defined with the TAGs in copy_url Tag:
+# When the download_url is not defined, url https://https://app2103.bws.birst.com is taken
+# TAG: b2s_mailrecipients
+# - defines the mail recipients who receive an mail with the migration results. 
+# - comma separated for multiple recipients
+# - format b2s_mailrecipients = <mail_recipient> [, <mail_recipient>, ...]
+
+[UploadRepofromSVN.exe]
+# This python script uploads the repository admin files from the spaces defined ith the download url, to the 
+# spaces defined with the upload url specified in the copy_url Tag.
+# Both the download and upload url must be spcified.
+# The spaces, defined with the upload should not exist.
+# TAG: ufs_mailrecipients
+# - defines the mail recipients who receive an mail with the upload results. 
+# - comma separated for multiple recipients 
+# - format ut_mailrecipients = <mail_recipient> [, <mail_recipient>, ...] 
+
+# Input Configurations
+username = proxyuserlogin
+password = password
+result_log_file = log_bu_rep_dev.txt
+output_mode = SHOW
+backup_mode = REPOGOLD
+repo_base_url = http://INHYNSKHADRI1.infor.com/svn/HCM/
+repo_svn_dir = BackUp Repo files
+
+
+#Connection GUIDS
+#       #US                                   #EU1                                  #APAC1                                #APAC2
+guids = 6dcc2f61-c848-4bf9-a8bd-d5504f996fbf, e55d63bb-4d11-43e3-89d7-30b3dde68cef, 16bff0e4-253b-4017-b03f-c599db2bd743, eadda9de-b6f8-4c59-9e21-65671ec22c61
+
+# Email Configurations
+mail_server = smtp-mail.outlook.com
+mail_sender = syed.khadri@infor.com
+mail_password = outlookpassword
+b2s_mailrecipients = syed.khadri@infor.com
+ufs_mailrecipients = syed.khadri@infor.com
+
+
+# Backup/Upload Repo file for Gold Spaces
+copy_from = REPOGOLD, HCM_Analytics_11_0_5_1
+copy_from_spaces = REPOGOLD, Extension_Golden, Source_Golden, Model_Golden, Consumer_Golden
+copy_to = REPOGOLD, copy_of
+copy_format = REPOGOLD, copy_to, copy_from, copy_from_spaces
+copy_url = REPOGOLD, https://app2103.bws.birst.com, https://app2103.eu1.birst.com
+
+
+# Backup/Upload Repo file for DEV Spaces
+copy_from = REPODEV, HCM_Analytics_11_0_5_0
+copy_from_spaces = REPODEV, Source, Model, Consumer
+copy_to = REPODEV, EUUPLOAD06
+copy_format = REPODEV, copy_from, copy_from_spaces
+copy_url = REPODEV, https://app2103.bws.birst.com, https://app2103.apac2.birst.com
