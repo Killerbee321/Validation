@@ -1,0 +1,131 @@
+04/15/2020 09:50:11 AM 320 INFO: Backup mode = REPOGOLD
+04/15/2020 09:50:11 AM 322 INFO: Birst User name = proxyuser/ed.brauch@infor.com/hcmcontent
+04/15/2020 09:50:11 AM 397 INFO: Download from URL = https://app2103.bws.birst.com
+04/15/2020 09:50:11 AM 398 INFO: Upload to URL = https://login.cn1.birst.com
+04/15/2020 09:50:11 AM 399 INFO:  
+04/15/2020 09:50:13 AM 404 INFO: Login https://app2103.bws.birst.com with zeep Successful
+04/15/2020 09:50:13 AM 406 INFO: Retrieving space info on https://app2103.bws.birst.com
+04/15/2020 09:50:14 AM 412 INFO: Logout zeep ...
+04/15/2020 09:50:22 AM 422 INFO: Login https://login.cn1.birst.com with zeep Successful
+04/15/2020 09:50:30 AM 2149 INFO: Updating cookies every 3 seconds
+04/15/2020 09:50:30 AM 428 INFO: Admin Login Successful
+04/15/2020 09:50:30 AM 429 INFO:  
+04/15/2020 09:50:31 AM 2104 INFO: Service name = getLoggedInUserDetails
+04/15/2020 09:50:31 AM 2105 INFO: ===============================
+04/15/2020 09:50:32 AM 546 INFO: user proxyuser/ed.brauch@infor.com/hcmcontent is a Repository Admin
+04/15/2020 09:50:32 AM 547 INFO:  
+04/15/2020 09:50:32 AM 553 INFO: Creating space(s):
+04/15/2020 09:50:32 AM 555 INFO:     space [0]: HCM_11_0_5_1_Extension_Golden
+04/15/2020 09:50:36 AM 555 INFO:     space [1]: HCM_11_0_5_1_Source_Golden
+04/15/2020 09:50:40 AM 555 INFO:     space [2]: HCM_11_0_5_1_Model_Golden
+04/15/2020 09:50:44 AM 555 INFO:     space [3]: HCM_11_0_5_1_Consumer_Golden
+04/15/2020 09:50:49 AM 577 INFO:  
+04/15/2020 09:50:49 AM 579 INFO: #########################################################################
+04/15/2020 09:50:49 AM 580 INFO: Url: https://login.cn1.birst.com, upload space[1]: HCM_11_0_5_1_Extension_Golden
+04/15/2020 09:50:49 AM 581 INFO:        space_id:98db57eb-b01c-4411-9986-9ef5a230c448
+04/15/2020 09:50:49 AM 582 INFO: #########################################################################
+04/15/2020 09:50:49 AM 586 INFO: Current space: HCM_11_0_5_1_Extension_Golden
+04/15/2020 09:50:49 AM 2104 INFO: Service name = GetSpaceDetails
+04/15/2020 09:50:49 AM 2105 INFO: ===============================
+04/15/2020 09:50:49 AM 2528 INFO:     uploading files:
+04/15/2020 09:50:49 AM 2538 INFO:         [1]: repository_dev_mongo_HCM_11_0_5_1_Extension_Golden.xml
+04/15/2020 09:51:00 AM 2538 INFO:         [2]: packages_mongo_HCM_11_0_5_1_Extension_Golden.xml
+04/15/2020 09:51:00 AM 2538 INFO:         [3]: cloud_connectors_config_HCM_11_0_5_1_Extension_Golden.xml
+04/15/2020 09:51:02 AM 2538 INFO:         [4]: users_and_groups_HCM_11_0_5_1_Extension_Golden.xml
+04/15/2020 09:51:02 AM 2538 INFO:         [5]: catalog_HCM_11_0_5_1_Extension_Golden.zip
+04/15/2020 09:51:03 AM 2538 INFO:         [6]: custom_subject_areas_HCM_11_0_5_1_Extension_Golden.zip
+04/15/2020 09:51:03 AM 2538 INFO:         [7]: conditions_HCM_11_0_5_1_Extension_Golden.json
+04/15/2020 09:51:04 AM 614 INFO: Current space: HCM_11_0_5_1_Source_Golden
+04/15/2020 09:51:04 AM 2104 INFO: Service name = GetSpaceDetails
+04/15/2020 09:51:04 AM 2105 INFO: ===============================
+04/15/2020 09:51:05 AM 623 INFO:     repointing connection:
+04/15/2020 09:51:05 AM 629 INFO:         HCM_11_0_5_1_Extension_Golden: repointconnection 98db57eb-b01c-4411-9986-9ef5a230c448 6dcc2f61-c848-4bf9-a8bd-d5504f996fbf ea77a781-69eb-4f66-ba16-b630571fa591
+04/15/2020 09:51:05 AM 577 INFO:  
+04/15/2020 09:51:05 AM 579 INFO: #########################################################################
+04/15/2020 09:51:05 AM 580 INFO: Url: https://login.cn1.birst.com, upload space[2]: HCM_11_0_5_1_Source_Golden
+04/15/2020 09:51:05 AM 581 INFO:        space_id:bddab1b5-72fc-428b-86f3-4a594b8bed98
+04/15/2020 09:51:05 AM 582 INFO: #########################################################################
+04/15/2020 09:51:05 AM 586 INFO: Current space: HCM_11_0_5_1_Source_Golden
+04/15/2020 09:51:05 AM 2104 INFO: Service name = GetSpaceDetails
+04/15/2020 09:51:05 AM 2105 INFO: ===============================
+04/15/2020 09:51:06 AM 2528 INFO:     uploading files:
+04/15/2020 09:51:06 AM 2538 INFO:         [1]: repository_dev_mongo_HCM_11_0_5_1_Source_Golden.xml
+04/15/2020 09:51:06 AM 2563 INFO: GHR_Attribute_Extension_Space
+04/15/2020 09:51:44 AM 2538 INFO:         [2]: packages_mongo_HCM_11_0_5_1_Source_Golden.xml
+04/15/2020 09:51:44 AM 2538 INFO:         [3]: cloud_connectors_config_HCM_11_0_5_1_Source_Golden.xml
+04/15/2020 09:51:44 AM 2538 INFO:         [4]: users_and_groups_HCM_11_0_5_1_Source_Golden.xml
+04/15/2020 09:51:45 AM 2538 INFO:         [5]: catalog_HCM_11_0_5_1_Source_Golden.zip
+04/15/2020 09:51:45 AM 2538 INFO:         [6]: custom_subject_areas_HCM_11_0_5_1_Source_Golden.zip
+04/15/2020 09:51:45 AM 2538 INFO:         [7]: conditions_HCM_11_0_5_1_Source_Golden.json
+04/15/2020 09:51:46 AM 614 INFO: Current space: HCM_11_0_5_1_Extension_Golden
+04/15/2020 09:51:46 AM 2104 INFO: Service name = GetSpaceDetails
+04/15/2020 09:51:46 AM 2105 INFO: ===============================
+04/15/2020 09:51:48 AM 623 INFO:     repointing connection:
+04/15/2020 09:51:48 AM 629 INFO:         HCM_11_0_5_1_Source_Golden: repointconnection bddab1b5-72fc-428b-86f3-4a594b8bed98 6dcc2f61-c848-4bf9-a8bd-d5504f996fbf ea77a781-69eb-4f66-ba16-b630571fa591
+04/15/2020 09:51:48 AM 643 INFO:     repointing packages:
+04/15/2020 09:51:48 AM 649 INFO:          GHR_Attribute_Extension_Space: repointpackages bddab1b5-72fc-428b-86f3-4a594b8bed98 40da1cb0-e825-4c86-bec8-9e7b86fa8cc0 98db57eb-b01c-4411-9986-9ef5a230c448
+04/15/2020 09:51:51 AM 577 INFO:  
+04/15/2020 09:51:51 AM 579 INFO: #########################################################################
+04/15/2020 09:51:51 AM 580 INFO: Url: https://login.cn1.birst.com, upload space[3]: HCM_11_0_5_1_Model_Golden
+04/15/2020 09:51:51 AM 581 INFO:        space_id:1b6a93d1-b6b0-400c-b070-55f42193886c
+04/15/2020 09:51:51 AM 582 INFO: #########################################################################
+04/15/2020 09:51:51 AM 586 INFO: Current space: HCM_11_0_5_1_Model_Golden
+04/15/2020 09:51:51 AM 2104 INFO: Service name = GetSpaceDetails
+04/15/2020 09:51:51 AM 2105 INFO: ===============================
+04/15/2020 09:51:51 AM 2528 INFO:     uploading files:
+04/15/2020 09:51:51 AM 2538 INFO:         [1]: repository_dev_mongo_HCM_11_0_5_1_Model_Golden.xml
+04/15/2020 09:51:52 AM 2563 INFO: HCM Source
+04/15/2020 09:55:18 AM 2538 INFO:         [2]: packages_mongo_HCM_11_0_5_1_Model_Golden.xml
+04/15/2020 09:55:18 AM 2538 INFO:         [3]: cloud_connectors_config_HCM_11_0_5_1_Model_Golden.xml
+04/15/2020 09:55:18 AM 2538 INFO:         [4]: users_and_groups_HCM_11_0_5_1_Model_Golden.xml
+04/15/2020 09:55:19 AM 2538 INFO:         [5]: catalog_HCM_11_0_5_1_Model_Golden.zip
+04/15/2020 09:55:19 AM 2538 INFO:         [6]: custom_subject_areas_HCM_11_0_5_1_Model_Golden.zip
+04/15/2020 09:55:20 AM 2538 INFO:         [7]: conditions_HCM_11_0_5_1_Model_Golden.json
+04/15/2020 09:55:21 AM 614 INFO: Current space: HCM_11_0_5_1_Extension_Golden
+04/15/2020 09:55:21 AM 2104 INFO: Service name = GetSpaceDetails
+04/15/2020 09:55:21 AM 2105 INFO: ===============================
+04/15/2020 09:55:26 AM 643 INFO:     repointing packages:
+04/15/2020 09:55:26 AM 649 INFO:          HCM Source: repointpackages 1b6a93d1-b6b0-400c-b070-55f42193886c 4b611d64-b721-4068-8144-ef00666d1c1d bddab1b5-72fc-428b-86f3-4a594b8bed98
+04/15/2020 09:55:31 AM 577 INFO:  
+04/15/2020 09:55:31 AM 579 INFO: #########################################################################
+04/15/2020 09:55:31 AM 580 INFO: Url: https://login.cn1.birst.com, upload space[4]: HCM_11_0_5_1_Consumer_Golden
+04/15/2020 09:55:31 AM 581 INFO:        space_id:66764061-60da-4442-a1d7-d7edd5bd50d2
+04/15/2020 09:55:31 AM 582 INFO: #########################################################################
+04/15/2020 09:55:31 AM 586 INFO: Current space: HCM_11_0_5_1_Consumer_Golden
+04/15/2020 09:55:31 AM 2104 INFO: Service name = GetSpaceDetails
+04/15/2020 09:55:31 AM 2105 INFO: ===============================
+04/15/2020 09:55:32 AM 2528 INFO:     uploading files:
+04/15/2020 09:55:32 AM 2538 INFO:         [1]: repository_dev_mongo_HCM_11_0_5_1_Consumer_Golden.xml
+04/15/2020 09:55:32 AM 2563 INFO: HCM Data Model
+04/15/2020 09:55:32 AM 2563 INFO: HCM Time Variables
+04/15/2020 09:55:36 AM 2538 INFO:         [2]: cloud_connectors_config_HCM_11_0_5_1_Consumer_Golden.xml
+04/15/2020 09:55:36 AM 2538 INFO:         [3]: users_and_groups_HCM_11_0_5_1_Consumer_Golden.xml
+04/15/2020 09:55:37 AM 2538 INFO:         [4]: catalog_HCM_11_0_5_1_Consumer_Golden.zip
+04/15/2020 09:55:43 AM 2538 INFO:         [5]: saved_expressions_HCM_11_0_5_1_Consumer_Golden.xml
+04/15/2020 09:55:44 AM 2538 INFO:         [6]: drillmaps_HCM_11_0_5_1_Consumer_Golden.xml
+04/15/2020 09:55:44 AM 2538 INFO:         [7]: custom_subject_areas_HCM_11_0_5_1_Consumer_Golden.zip
+04/15/2020 09:55:44 AM 2538 INFO:         [8]: conditions_HCM_11_0_5_1_Consumer_Golden.json
+04/15/2020 09:55:45 AM 614 INFO: Current space: HCM_11_0_5_1_Extension_Golden
+04/15/2020 09:55:45 AM 2104 INFO: Service name = GetSpaceDetails
+04/15/2020 09:55:45 AM 2105 INFO: ===============================
+04/15/2020 09:55:46 AM 643 INFO:     repointing packages:
+04/15/2020 09:55:46 AM 649 INFO:          HCM Data Model: repointpackages 66764061-60da-4442-a1d7-d7edd5bd50d2 409a2331-4005-4aa1-9b03-8aa913d77632 1b6a93d1-b6b0-400c-b070-55f42193886c
+04/15/2020 09:55:48 AM 649 INFO:          HCM Time Variables: repointpackages 66764061-60da-4442-a1d7-d7edd5bd50d2 409a2331-4005-4aa1-9b03-8aa913d77632 1b6a93d1-b6b0-400c-b070-55f42193886c
+04/15/2020 09:55:48 AM 661 INFO:  
+04/15/2020 09:55:48 AM 662 INFO: =============================================
+04/15/2020 09:55:48 AM 663 INFO:  
+04/15/2020 09:55:48 AM 665 INFO:  
+04/15/2020 09:55:48 AM 666 INFO: Summary: 
+04/15/2020 09:55:48 AM 667 INFO: =========================================================
+04/15/2020 09:55:48 AM 668 INFO: # created spaces = 4
+04/15/2020 09:55:48 AM 669 INFO: # files uploaded = 29
+04/15/2020 09:55:48 AM 670 INFO: # created spaces = 4
+04/15/2020 09:55:48 AM 671 INFO: # connections repointed = 2
+04/15/2020 09:55:48 AM 672 INFO: # packages repointed = 4
+04/15/2020 09:55:48 AM 674 INFO:  
+04/15/2020 09:55:48 AM 675 INFO: Mail sent to syed.khadri@infor.com
+04/15/2020 09:55:59 AM 686 INFO: Logout admin ...
+04/15/2020 09:55:59 AM 690 INFO:    
+04/15/2020 09:55:59 AM 692 INFO: Logout zeep ...
+04/15/2020 09:55:59 AM 701 INFO: copying log_bu_rep_dev.txt to logging\log_bu_rep_dev_20200415_095011.txt ...
+04/15/2020 09:55:59 AM 703 INFO: Job completed

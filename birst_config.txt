@@ -1,0 +1,296 @@
+[BackupRepo2SVN.py]
+# This python script downloads the repo admin files from spaces and stores them in SVN.
+# The backup spaces are defined with the TAGs in section [BackUpSpaces.py]:
+# - copy_from 
+# - copy_from_spaces
+# The download url is defined with the TAGs in section [BackUpSpaces.py]:
+# - copy_url
+# When the download_url is not defined, url https://https://app2103.bws.birst.com is taken
+# TAG: b2s_mailrecipients
+# - defines the mail recipients who receive an mail with the migration results. 
+# - comma separated for multiple recipients
+# - format b2s_mailrecipients = <mail_recipient> [, <mail_recipient>, ...]
+
+# Input Configurations
+username = proxyuser/ed.brauch@infor.com/hcmcontent
+password = $$AGt.654
+result_log_file = log_bu_rep_dev.txt
+output_mode = SHOW
+backup_mode = REPOGOLD
+repo_base_url = http://INHYNSKHADRI1.infor.com/svn/GHR/
+repo_svn_dir = BackUp Repo files
+#svn_username = testRepo
+#svn_password = testRepo
+
+#Connection GUIDS
+#       #US                                   #EU1                                  #APAC1                                #APAC2                                 #CN1
+guids = 6dcc2f61-c848-4bf9-a8bd-d5504f996fbf, e55d63bb-4d11-43e3-89d7-30b3dde68cef, 16bff0e4-253b-4017-b03f-c599db2bd743, eadda9de-b6f8-4c59-9e21-65671ec22c61, ea77a781-69eb-4f66-ba16-b630571fa591
+
+# Email Configurations
+mail_server = smtp-mail.outlook.com
+mail_sender = syed.khadri@infor.com
+mail_password = Killerbee@123
+b2s_mailrecipients = syed.khadri@infor.com
+ufs_mailrecipients = syed.khadri@infor.com
+
+
+# Backup/Upload Repo file for Gold Spaces
+copy_from = REPOGOLD, HCM_11_0_5_1
+copy_from_spaces = REPOGOLD, Extension_Golden, Source_Golden, Model_Golden, Consumer_Golden
+copy_to = REPOGOLD, COPY1_OF
+copy_format = REPOGOLD, copy_from, copy_from_spaces
+copy_url = REPOGOLD, https://app2103.bws.birst.com, https://login.cn1.birst.com
+
+
+
+[BackUpSpaces.py]
+# This python script makes copies of spaces, per backup mode.
+# The script uses the copySpace webservice in replicate mode. 
+# When the # copies of a space is less than the # copy_keep:
+#  - a new space is created and is used by copySpace
+# When the # copies of a space is equal to the # copy_keep:
+#  - the oldest space backup is deleted, a new space is created and used by copySpace
+# TAG: copy_url
+# - defines per backup mode, the download / upload / backup urls. 
+# for [UploadRepofromSVN.py]
+# - format: copy_url = <backup mode>, <download_url>, <upload_url>
+#   uploads repo admin files from region defined with download_url to upload_url 
+# for [BackupRepo2SVN.py]
+# - format: copy_url = <backup mode> [, <download_url> ]
+#   downloads repo admin files from download_url to region in SVN defined with download_url 
+#   when download_url part is not specified, the url https://app2103.bws.birst.com/ is used
+# for [BackupSpace.py, RepointPackages.py and AddUserToSpace.py]
+# - format: copy_url = <backup mode> [, <backup_url> ]
+#   defines url where backup, repointing and adduser is done.
+#   when backup_url part is not specified, the url https://app2103.bws.birst.com/ is used
+# TAG: copy_from 
+# - defines per backup mode, the prefix of the spaces to be copied. 
+# - the spaces will be starting with the prefix
+# - also used for repointing.
+# - can be used multiple times, but once per backup mode
+# - format: copy_from = <backup mode>, <prefix>
+# TAG: copy_from_spaces
+# - defines per backup mode, a comma separated list the space parts to be copied. 
+# - the prefix (copy_from TAG) and a space part define the space to be copied.
+# - also used for repointing.
+# - can be used multiple times.
+# - format: copy_from_spaces = <backup mode>, <space> [, <space>, ...]
+# TAG: copy_to
+# - defines per backup mode, the prefix of the spaces of the copy. 
+# - the spaces will be starting with the prefix
+# - can be used multiple times, but once per backup mode
+# - format: copy_to = <backup mode>, <prefix>
+# TAG: copy_format 
+# - defines per backup mode, the name of the copy. 
+# - the name is defined by the other (copy_) tags
+# - can be used multiple times, but once per backup mode
+# - format: copy_format = <backup mode>, <tag> [, <tag>, ...]
+# TAG: copy_date_time 
+# - defines per backup mode, the date time format. 
+# - can be used multiple times, but once per backup mode
+# - format: copy_date_time = <backup mode>, <format>
+#   e.g. %Y%m%d_%H%M%S
+# TAG: copy_to_suffix 
+# - defines per backup mode, an extra name part. for e.g. the sprint version at the end of the copy name 
+# - can be used multiple times, but once per backup mode
+# - format: copy_to_suffix = <backup mode>, <suffix>
+# TAG: copy_keep 
+# - defines per backup mode, the max number of copies to be kept 
+# - format: copy_keep = <backup mode>, <# copies>
+# TAG: copy_spaces_with_data 
+# - defines per backup mode, the comma separated string of space(s) where the data is included, when copied. 
+# - when not defined for a backup mode, the data is always copied too.
+# - can be used multiple times, but once per backup mode
+# - format: copy_spaces_with_data = <backup mode>, <space> [, <space>, ...]
+# TAG: copy_create
+# - defines per backup mode, whether a create of spaces only is done or not.
+# - when not defined, a normal backup is done (delete, create, copy)
+# - can be used multiple times, but once per backup mode
+# - format: copy_create = <backup mode>, <create>
+#   - create part must be 1 when only a create is required. 
+# TAG: copy_mode:
+# - defines per backup mode, whether the copySpace is done as a replicate or a copy.
+# - when not defined, a replicate is done
+# - can be used multiple times, but once per backup mode
+# - format: copy_mode = replicate | copy
+# TAG: copy_options:
+# - defines per backup mode, the birst copy options for 1 or more spaces
+# - when not defined , all birst copy options are taken for all spaces. 
+# - can be used multiple times, but once per backup mode
+# - format: copy_options = <backup mode>, <space> [, <space>, ...] : <[!]option> [, <[!]option>]
+#   - for the space one of more option parts can be defined.
+#   - a birst copy option is omitted when the according option part is preceded with an !. 
+#   - option parts with and without the ! can be in one line, but:
+#     - first all options parts without ! are taken. When none defined, all birst copy options are taken.
+#     - from these options parts the option parts with ! are removed.  
+# - the 19 birst copy actions are:
+                          'color-palettes',
+                          'custom-subject-areas',
+                          'dashboardstyles',
+                          'data',
+                          'datastore',
+                          'repository',
+                          'packages',
+                          'schedules-report',
+                          'settings-permissions',
+                          'settings-membership',
+                          'salesforce',
+                          'catalog',
+                          'CustomGeoMaps.xml',
+                          'spacesettings.xml',
+                          'SavedExpressions.xml',
+                          'DrillMaps.xml',
+                          'connectors',
+                          'settings-basic',
+                          'themes'
+# TAG: copy_mailrecipients
+# - defines the mail recipients who receive an mail when the saved expression are deleted.
+# - comma separated for multiple recipients 
+# - format copy_mailrecipients = <mail_recipient> [, <mail_recipient>, ...] 
+copy_mailrecipients = syed.khadri@infor.com
+# Backup Development
+copy_from = DEV, HCM_Analytics_11_0_5_0
+copy_from_spaces = DEV, Model, Consumer
+copy_to = DEV, z_Backup
+copy_date_time = DEV, %Y%m%d_%H%M%S
+copy_format = DEV, copy_to, copy_date_time, copy_from, copy_from_spaces 
+copy_keep = DEV, 20
+
+# Backup/Upload Repo file for DEV Spaces
+copy_from = REPODEV, HCM_Analytics_11_0_5_0
+copy_from_spaces = REPODEV, Source, Model, Consumer
+copy_to = REPODEV, EUUPLOAD06
+copy_format = REPODEV, copy_from, copy_from_spaces
+copy_url = REPODEV, https://app2103.bws.birst.com, https://app2103.apac2.birst.com
+
+
+
+
+# Backup EU Gold
+copy_from = EUGOLD, HCM_Analytics_Gold_11_0_5_0
+copy_from_spaces = EUGOLD, Model, Consumer
+copy_to = EUGOLD, z_Backup
+copy_date_time = EUGOLD, %Y%m%d_%H%M%S
+copy_format = EUGOLD, copy_to, copy_date_time, copy_from, copy_from_spaces 
+copy_keep = EUGOLD, 20
+copy_url = EUGOLD, https://app2103.bws.birst.com, https://app2103.apac2.birst.com
+
+
+# Regression Test RT
+#copy_from = RT, z_Backup 20191115_193002 LN Dev
+#copy_from_spaces = RT, Conformed Dimensions, Consumer, Extensibility, Finance, Job Shop, LN Tables
+#copy_from_spaces = RT, Project, Quality, Sales
+#copy_to = RT, LN Regression Test 11
+#copy_format = RT, copy_to, copy_from_spaces 
+
+# QA
+#copy_from = QA, LN Dev
+#copy_from_spaces = QA, Conformed Dimensions, Consumer, Extensibility, Finance, Job Shop, LN Tables
+#copy_from_spaces = QA, Project, Quality, Sales
+#copy_to = QA, LN QA
+#copy_date_time = QA, %Y%m%d_%H%M%S
+#copy_format = QA, copy_to, copy_date_time, copy_from, copy_from_spaces  
+#copy_keep = QA, 20 
+# Consumer has all birst options
+# copy_options = QA, Conformed Dimensions, Finance : !data
+# copy_options = QA, Job Shop, LN Tables, Project : data
+
+# MULTICOPY
+#copy_from = MULTICOPY, z_Backup 20190227_010000 LN Branch 10_6_001A
+#copy_from_spaces = MULTICOPY, Conformed Dimensions, Consumer, Extensibility, Job Shop, LN Tables
+#copy_to = MULTICOPY, Test Swap 1, Test Swap 2
+#copy_format = MULTICOPY, copy_to, copy_from_spaces 
+#copy_keep = MULTICOPY, 1
+# All spaces with all birst options
+
+# Restore backup
+copy_from = RES, z_Backup 20180926_193001 LN Dev
+copy_from_spaces = RES, Conformed Dimensions, Consumer, Finance, Job Shop, LN Tables, Project 
+copy_from_spaces = RES, Quality, Sales
+copy_to = RES, LN Dev
+copy_date_time = RES, %Y%m%d_%H%M%S
+copy_format = RES, copy_to, copy_from_spaces 
+copy_keep = RES, 1
+
+# Sprint
+copy_from = SPR, LN Dev
+copy_from_spaces = SPR, Conformed Dimensions, Consumer, Finance, Job Shop, LN Tables, Project 
+copy_from_spaces = SPR, Quality, Sales
+copy_to = SPR, LN Spr
+copy_date_time = SPR, %Y%m%d
+copy_format = SPR, copy_to, copy_date_time, copy_from, copy_from_spaces, copy_to_suffix 
+copy_to_suffix = SPR, v03
+copy_keep = SPR, 1
+
+# BRANCH
+copy_from = BRANCH, LN Dev
+copy_from_spaces = BRANCH, Conformed Dimensions, Consumer, Extensibility, Finance, Job Shop, LN Tables 
+copy_from_spaces = BRANCH, Project, Quality, Sales
+copy_to = BRANCH, LN Branch CE_004
+copy_format = BRANCH, copy_to, copy_from_spaces 
+copy_keep = BRANCH, 1 
+# All spaces with all birst options
+
+# GOLD
+copy_from = GOLD, LN Branch CE_004
+copy_from_spaces = GOLD, Conformed Dimensions, Consumer, Extensibility, Finance, Job Shop, LN Tables, Project, Quality, Sales
+copy_to = GOLD, LN Gold CE_004
+copy_format = GOLD, copy_to, copy_from_spaces 
+copy_keep = GOLD, 1 
+# copy_options = GOLD, Conformed Dimensions, Consumer, Extensibility Job Shop, LN Tables : !data 
+
+# GOLDCONTENT
+copy_from = GOLDCONTENT, LN Gold 10_6_001A v2
+copy_from_spaces = GOLDCONTENT, Conformed Dimensions, Consumer, Extensibility, Job Shop, LN Tables
+# copy_from_spaces = GOLDCONTENT, Consumer Support, General Ledger, Invoicing, Procurement, Project, Quality, Sales
+copy_to = GOLDCONTENT, 20190214_2 LN Gold Content 10_6_001A 
+copy_format = GOLDCONTENT, copy_to, copy_from_spaces 
+copy_keep = GOLDCONTENT, 1 
+# copy_options = GOLDCONTENT, Conformed Dimensions, Consumer, Extensibility Job Shop, LN Tables : !data 
+
+# BackUp BRANCH Backup
+copy_from = BUBRANCH, LN Branch CE_004
+copy_from_spaces = BUBRANCH, Conformed Dimensions, Consumer, Extensibility, Finance, Job Shop, LN Tables, Project, Quality, Sales
+copy_to = BUBRANCH, zb_Backup
+copy_date_time = BUBRANCH, %Y%m%d_%H%M%S
+copy_format = BUBRANCH, copy_to, copy_date_time, copy_from, copy_from_spaces 
+copy_keep = BUBRANCH, 20
+# All spaces with all birst options 
+
+# IMDS
+copy_from = IMDS, LN Gold 10_6_002
+copy_from_spaces = IMDS, Conformed Dimensions, Consumer, Extensibility, Job Shop, LN Tables, Sales
+copy_to = IMDS, LN CompareMerge Gold 10_6_002
+copy_format = IMDS, copy_to, copy_from_spaces 
+copy_keep = IMDS, 1
+# All spaces with all birst options
+
+# Create space
+copy_create = CS, 1
+copy_from = CS, LN Dev
+copy_from_spaces = CS, Conformed Dimensions, Consumer, Job Shop, LN Tables 
+copy_to = CS, zzz_Backup_1, zzz_Backup_2, zzz_Backup_3
+copy_date_time = CS, %Y%m%d_%H%M%S
+copy_format = CS, copy_to, copy_date_time, copy_from, copy_from_spaces 
+copy_keep = CS, 1 
+ 
+
+
+
+
+[UploadRepofromSVN.py]
+# This python script uploads the repository admin files from the spaces defined ith the download url, to the 
+# spaces defined with the upload url. 
+# The upload spaces are defined with the TAGs in section [BackUpSpaces.py]:
+# - copy_from 
+# - copy_from_spaces
+# The download url and upload url are defined with the TAGs in section [BackUpSpaces.py]:
+# - copy_url
+# Both the download and upload url must be spcified.
+# The spaces, defined with the upload should not exist.
+# TAG: ufs_mailrecipients
+# - defines the mail recipients who receive an mail with the upload results. 
+# - comma separated for multiple recipients 
+# - format ut_mailrecipients = <mail_recipient> [, <mail_recipient>, ...]   
+
+
