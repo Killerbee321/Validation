@@ -37,8 +37,8 @@ ufs_mailrecipients = syed.khadri@infor.com
 # Backup/Upload Repo file for Gold Spaces
 copy_from = REPOGOLD, HCM_11_0_5_1
 copy_from_spaces = REPOGOLD, Extension_Golden, Source_Golden, Model_Golden, Consumer_Golden
-copy_to = REPOGOLD, COPY1_OF
-copy_format = REPOGOLD, copy_from, copy_from_spaces
+copy_to = REPOGOLD, copy_of
+copy_format = REPOGOLD, copy_to, copy_from, copy_from_spaces
 copy_url = REPOGOLD, https://app2103.bws.birst.com, https://login.cn1.birst.com
 
 
